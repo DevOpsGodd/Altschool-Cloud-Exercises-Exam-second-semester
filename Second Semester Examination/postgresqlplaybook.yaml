@@ -1,0 +1,16 @@
+---
+- name: Setup Web Server
+  hosts: all
+  remote_user : root
+  become: yes
+  become_method: sudo
+
+  tasks:
+
+    - name: create postgresql
+      copy: postgresql
+      src: /home/vagrant/postgresql.sh.jinja
+      dest: /home/ubuntu/postgresql.sh
+
+    - name: execute bash
+      shell: sh /home/ubuntu/postgresql.sh
